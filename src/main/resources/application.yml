@@ -1,0 +1,16 @@
+#修改端口号
+server:
+  port: 80
+
+
+#配置jdbc
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/starblog
+    username: root
+    password: majiecai20010502
+
+  web:
+    resources:
+      static-locations: [classpath:/]
