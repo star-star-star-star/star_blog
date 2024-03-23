@@ -30,14 +30,6 @@ public class ContentEntry {
      * 文章创建者uid
      */
     private Integer uid;
-    /**
-     * 文章点击次数
-     */
-    private Integer hits;
-    /**
-     * 文章评论次数
-     */
-    private Integer comments;
 
     /*
         constructors
@@ -46,15 +38,13 @@ public class ContentEntry {
     public ContentEntry() {
     }
 
-    public ContentEntry(Integer contentId, String title, String createTime, String modifiedTime, String content, Integer uid, Integer hits, Integer comments) {
+    public ContentEntry(Integer contentId, String title, String createTime, String modifiedTime, String content, Integer uid) {
         this.contentId = contentId;
         this.title = title;
         this.createTime = createTime;
         this.modifiedTime = modifiedTime;
         this.content = content;
         this.uid = uid;
-        this.hits = hits;
-        this.comments = comments;
     }
     /*
         getter and setter
@@ -108,22 +98,6 @@ public class ContentEntry {
         this.uid = uid;
     }
 
-    public Integer getHits() {
-        return hits;
-    }
-
-    public void setHits(Integer hits) {
-        this.hits = hits;
-    }
-
-    public Integer getComments() {
-        return comments;
-    }
-
-    public void setComments(Integer comments) {
-        this.comments = comments;
-    }
-
     /*
         toString method
      */
@@ -137,8 +111,6 @@ public class ContentEntry {
         sb.append(", modifiedTime='").append(modifiedTime).append('\'');
         sb.append(", content='").append(content).append('\'');
         sb.append(", uid=").append(uid);
-        sb.append(", hits=").append(hits);
-        sb.append(", comments=").append(comments);
         sb.append('}');
         return sb.toString();
     }
@@ -152,11 +124,11 @@ public class ContentEntry {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContentEntry that = (ContentEntry) o;
-        return contentId.equals(that.contentId) && title.equals(that.title) && createTime.equals(that.createTime) && modifiedTime.equals(that.modifiedTime) && content.equals(that.content) && uid.equals(that.uid) && hits.equals(that.hits) && comments.equals(that.comments);
+        return contentId.equals(that.contentId) && title.equals(that.title) && createTime.equals(that.createTime) && modifiedTime.equals(that.modifiedTime) && content.equals(that.content) && uid.equals(that.uid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contentId, title, createTime, modifiedTime, content, uid, hits, comments);
+        return Objects.hash(contentId, title, createTime, modifiedTime, content, uid);
     }
 }

@@ -1,5 +1,6 @@
 package com.starblog.controller;
 
+import com.starblog.entry.ContentEntry;
 import com.starblog.entry.UserEntry;
 import com.starblog.service.Processor;
 import jakarta.annotation.Resource;
@@ -26,23 +27,28 @@ public class LoginHandler {
             return "../login.html";
         }
         boolean b = processor.isAllowToLogin(name, password);
-        System.out.println("p1");
         if (b) {
             processor.updateUserActiveTime(name);
             UserEntry user = processor.getUserByName(name);
-            System.out.println("p2");
             model.addAttribute("uidInf", user.getUid());
             model.addAttribute("userNameInf", user.getName());
             model.addAttribute("passwordInf", user.getPassword());
             model.addAttribute("emailInf", user.getEmail());
             model.addAttribute("registerTimeInf", user.getRegisterTime());
             model.addAttribute("activeTimeInf", user.getActiveTime());
-            model.addAttribute("instructionInf", user.getInstruction());
-            System.out.println("p3");
+            ContentEntry[] contents = processor.getRecentContents(name);
+            if (contents != null) {
+                int index = 1;
+                for (ContentEntry content : contents) {
+                    model.addAttribute("t"+index, content.getTitle());
+                    model.addAttribute("f"+index,content.getContent());
+                    index++;
+                }
+                System.out.println(model.asMap());
+            }
             return "../userindex.html";
         } else {
             model.addAttribute("msg", "用户名或密码错误");
-            System.out.println("p4");
             return "../login.html";
         }
     }

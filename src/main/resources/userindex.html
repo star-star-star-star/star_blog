@@ -69,14 +69,6 @@
                             </div>
                             <div class="col"><input class="bg-transparent shadow-lg" type="text" style="text-align: left;font-size: 12px;width: 290px;" th:value="${activeTimeInf}" readonly=""></div>
                         </div>
-                        <div class="row">
-                            <div class="col" style="text-align: right;">
-                                <p style="text-align: right;">个人简介</p>
-                            </div>
-                            <div class="col">
-                                <p style="margin-top: 0;margin-bottom: 0;" th:value="${instructionInf}"></p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -95,55 +87,53 @@
             <div class="col">
                 <h3>发布时间</h3>
             </div>
+        </div>
+        <div class="row">
             <div class="col">
-                <h3>浏览人数</h3>
+                <p th:text="${t1}"></p>
             </div>
             <div class="col">
-                <h3>点赞人数</h3>
+                <p th:text="${f1}"></p>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <p th:value="${t1}"></p>
+                <p th:text="${t2}"></p>
             </div>
             <div class="col">
-                <p th:value="${f1}"></p>
-            </div>
-            <div class="col">
-                <p th:value="${l1}"></p>
-            </div>
-            <div class="col">
-                <p th:value="${z1}"></p>
+                <p th:text="${f2}"></p>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <p th:value="${t2}"></p>
+                <p th:text="${t3}"></p>
             </div>
             <div class="col">
-                <p th:value="${f2}"></p>
-            </div>
-            <div class="col">
-                <p th:value="${l2}"></p>
-            </div>
-            <div class="col">
-                <p th:value="${z2}"></p>
+                <p th:text="${f3}"></p>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <p th:value="${t3}"></p>
+    </div>
+    <hr>
+    <div class="container">
+        <form th:action="@{/content/add}" method="post">
+            <div class="row">
+                <div class="col-lg-1">
+                    <h3 style="width: 100px;margin-top: 8px;padding-top: 15px;padding-bottom: 10px;">标题：</h3>
+                </div>
+                <div class="col"><input class="form-control" type="text" id="title" style="padding-top: 0px;margin-top: 20px;" name="title"></div>
             </div>
-            <div class="col">
-                <p th:value="${f3}"></p>
+            <div class="row">
+                <div class="col">
+                    <h3>正文：</h3>
+                </div>
             </div>
-            <div class="col">
-                <p th:value="${l3}"></p>
+            <div class="row">
+                <div class="col"><textarea class="form-control" id="text" rows="25" name="text"></textarea></div>
             </div>
-            <div class="col">
-                <p th:value="${z3}"></p>
-            </div>
-        </div>
+            <div class="row">
+                <div class="col offset-lg-10"><input class="btn btn-primary" type="submit" value="发布"></div>
+            </div><input class="form-control invisible" type="text" id="userName" name="userName" th:value="${userNameInf}">
+        </form>
     </div>
     <footer>
         <div class="container">

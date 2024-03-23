@@ -105,15 +105,6 @@ public class Processor {
     }
 
     /**
-     * @param user 用户实体
-     * @apiNote 更新用户最近登录时间
-     * @deprecated
-     */
-    public void updateUserActiveTime(@NotNull UserEntry user) {
-        sqlQuery.updateUserActiveTime(user.getName(), user.getActiveTime());
-    }
-
-    /**
      * @param name 用户名
      * @apiNote 更新用户最近登录时间
      */
@@ -125,11 +116,10 @@ public class Processor {
      * @param name        用户名
      * @param password    密码（未加密）
      * @param email       邮箱
-     * @param instruction 个人简介
      * @apiNote 用户注册
      */
-    public void addUser(@NotNull String name, @NotNull String password, @NotNull String email, String instruction) {
-        UserEntry user = new UserEntry(null, name, enCodePassword(password), email, ZonedDateTime.now().toString(), ZonedDateTime.now().toString(), instruction);
+    public void addUser(@NotNull String name, @NotNull String password, @NotNull String email) {
+        UserEntry user = new UserEntry(null, name, enCodePassword(password), email, ZonedDateTime.now().toString(), ZonedDateTime.now().toString());
         sqlQuery.addUser(user);
     }
 
@@ -141,7 +131,6 @@ public class Processor {
     public void deleteUser(@NotNull String name) {
         UserEntry user = getUserByName(name);
         sqlQuery.deleteContentsByUser(user);
-        sqlQuery.deleteCommentsByUser(user);
         sqlQuery.deleteUser(user);
     }
 
@@ -184,6 +173,18 @@ public class Processor {
             }
         }
         return false;
+    }
+
+    /**
+     * @apiNote 添加文章
+     * @param name 用户名
+     * @param title 文章标题
+     * @param text 文章内容
+     */
+    public void addContent(@NotNull String name,@NotNull String title,@NotNull String text){
+        UserEntry user = getUserByName(name);
+        ContentEntry content = new ContentEntry(null,title,ZonedDateTime.now().toString(),ZonedDateTime.now().toString(),text,user.getUid());
+        sqlQuery.addContent(content);
     }
 
 }

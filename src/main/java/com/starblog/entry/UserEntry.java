@@ -30,10 +30,6 @@ public class UserEntry {
      * 最近登录时间
      */
     private String activeTime;
-    /**
-     * 个人简介
-     */
-    private String instruction;
 
     /*
         constructors
@@ -42,14 +38,13 @@ public class UserEntry {
     public UserEntry() {
     }
 
-    public UserEntry(Integer uid, String name, String password, String email, String registerTime, String activeTime, String instruction) {
+    public UserEntry(Integer uid, String name, String password, String email, String registerTime, String activeTime) {
         this.uid = uid;
         this.name = name;
         this.password = password;
         this.email = email;
         this.registerTime = registerTime;
         this.activeTime = activeTime;
-        this.instruction = instruction;
     }
     /*
         getter and setter
@@ -103,14 +98,6 @@ public class UserEntry {
         this.activeTime = activeTime;
     }
 
-    public String getInstruction() {
-        return instruction;
-    }
-
-    public void setInstruction(String instruction) {
-        this.instruction = instruction;
-    }
-
     /*
         toString method
      */
@@ -124,7 +111,6 @@ public class UserEntry {
         sb.append(", email='").append(email).append('\'');
         sb.append(", registerTime='").append(registerTime).append('\'');
         sb.append(", activeTime='").append(activeTime).append('\'');
-        sb.append(", instruction='").append(instruction).append('\'');
         sb.append('}');
         return sb.toString();
     }
@@ -138,11 +124,11 @@ public class UserEntry {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEntry userEntry = (UserEntry) o;
-        return uid.equals(userEntry.uid) && name.equals(userEntry.name) && password.equals(userEntry.password) && email.equals(userEntry.email) && registerTime.equals(userEntry.registerTime) && activeTime.equals(userEntry.activeTime) && instruction.equals(userEntry.instruction);
+        return uid.equals(userEntry.uid) && name.equals(userEntry.name) && password.equals(userEntry.password) && email.equals(userEntry.email) && registerTime.equals(userEntry.registerTime) && activeTime.equals(userEntry.activeTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uid, name, password, email, registerTime, activeTime, instruction);
+        return Objects.hash(uid, name, password, email, registerTime, activeTime);
     }
 }
